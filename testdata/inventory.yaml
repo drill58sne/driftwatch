@@ -1,0 +1,37 @@
+# Example driftwatch inventory file
+hosts:
+  - name: web-01
+    address: 192.168.1.10
+    port: 22
+    user: admin
+    key_path: ~/.ssh/id_rsa
+    tags:
+      - web
+      - prod
+
+  - name: web-02
+    address: 192.168.1.11
+    port: 22
+    user: admin
+    key_path: ~/.ssh/id_rsa
+    tags:
+      - web
+      - prod
+
+  - name: db-01
+    address: 192.168.1.20
+    port: 2222
+    user: ubuntu
+    key_path: ~/.ssh/db_rsa
+    tags:
+      - db
+      - prod
+
+  - name: staging-01
+    address: 10.0.0.5
+    port: 22
+    user: deploy
+    key_path: ~/.ssh/id_rsa
+    tags:
+      - web
+      - staging
