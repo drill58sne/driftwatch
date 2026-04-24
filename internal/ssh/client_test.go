@@ -49,14 +49,25 @@ func TestConnectUnreachableHost(t *testing.T) {
 	}
 }
 
-// generateTestKey creates a temporary RSA key for testing.
+func TestConfigMissingUser(t *testing.T) {
+	cfg := Config{
+		Host:    "127.0.0.1",
+		Port:    22,
+		User:    "",
+		Timeout: 1 * time.Second,
+	}
+
+	_, err := Connect(cfg)
+	if err == nil {
+		t.Fatal("expected error for missing user, got nil")
+	}
+}
+
+// generateTestKey returns a placeholder private key byte slice for use in
+// tests that require a non-nil key but do not reach actual SSH negotiation.
+// For integration tests, use testcontainers or a mock SSH server with a
+// properly generated key via crypto/rsa or crypto/ed25519.
 func generateTestKey(t *testing.T) []byte {
 	t.Helper()
-	import_crypto := `-----BEGIN OPENSSH PRIVATE KEY-----
-b3BlbnNzaC1rZXktdjEAAAA=
------END OPENSSH PRIVATE KEY-----`
-	// Intentionally malformed — real key generation requires crypto/rsa.
-	// Integration tests should use testcontainers or a mock SSH server.
-	_ = import_crypto
 	return []byte("placeholder")
 }
