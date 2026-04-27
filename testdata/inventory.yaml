@@ -35,3 +35,12 @@ hosts:
     tags:
       - web
       - staging
+
+  - name: monitoring-01
+    address: 10.0.0.10
+    port: 22
+    user: admin
+    key_path: ~/.ssh/id_rsa
+    tags:
+      - monitoring
+      - prod
