@@ -87,3 +87,12 @@ func (a *Alerter) Emit(alert *Alert) {
 	}
 	fmt.Fprintf(a.writer, "[%s] %s\n", alert.Level, alert.Message)
 }
+
+// EvaluateAndEmit is a convenience method that evaluates the given summary
+// and immediately emits any resulting alert. It returns the Alert that was
+// emitted, or nil if no threshold was exceeded.
+func (a *Alerter) EvaluateAndEmit(s differ.Summary) *Alert {
+	alert := a.Evaluate(s)
+	a.Emit(alert)
+	return alert
+}
