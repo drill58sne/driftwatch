@@ -41,9 +41,10 @@ files:
 **Example output:**
 
 ```
-[OK]   web-01  /etc/ssh/sshd_config
+[OK]    web-01  /etc/ssh/sshd_config
 [DRIFT] web-02  /etc/ssh/sshd_config — expected "PermitRootLogin no" not found
-[OK]   web-03  /etc/ntp.conf
+[OK]    web-03  /etc/ntp.conf
+[ERROR] web-04  /etc/ntp.conf — connection timed out
 ```
 
 ### Flags
@@ -55,6 +56,8 @@ files:
 | `--user` | SSH username (default: current user) |
 | `--key` | Path to SSH private key (default: `~/.ssh/id_rsa`) |
 | `--timeout` | SSH connection timeout (default: `10s`) |
+| `--concurrency` | Number of hosts to check in parallel (default: `10`) |
+| `--output` | Output format: `text` or `json` (default: `text`) |
 
 ---
 
