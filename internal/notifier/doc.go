@@ -16,4 +16,16 @@
 //
 // The payload includes a timestamp, total host count, drifted host count,
 // and the full differ.Summary for downstream processing.
+//
+// Retry behaviour:
+//
+// By default, the notifier does not retry failed requests. To enable retries,
+// set Config.MaxRetries to a positive integer. Retries use exponential backoff
+// with a base interval of Config.RetryInterval (default 2s).
+//
+// Timeout:
+//
+// HTTP requests are bounded by Config.Timeout (default 10s). Callers that
+// need tighter control can supply a pre-configured *http.Client via
+// Config.HTTPClient.
 package notifier
